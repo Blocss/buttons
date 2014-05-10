@@ -9,7 +9,33 @@
 \*----------------------------------------------------------------------------*/
 
 // Module can be disabled by switching `$use-buttons` to `false`
-$use-buttons:                       true                            !default;
+$use-buttons:                          true                         !default;
+
+$button-padding:                       $space/2                     !default;
+$button-padding--small:                $button-padding/2            !default;
+$button-padding--large:                $button-padding*2            !default;
+$button-background:                    #ffffff                      !default;
+$button-color:                         #000000                      !default;
+$button-border-width:                  1px                          !default;
+$button-border-style:                  solid                        !default;
+$button-border-color:                  $button-color                !default;
+
+/**
+ * Enable/disable modifiers
+ */
+$enable-button-small:                  true                         !default;
+$enable-button-large:                  true                         !default;
+$enable-button-full:                   true                         !default;
+$enable-button-alpha:                  true                         !default;
+$enable-button-beta:                   true                         !default;
+$enable-button-gamma:                  true                         !default;
+$enable-button-delta:                  true                         !default;
+$enable-button-epsilon:                true                         !default;
+$enable-button-zeta:                   true                         !default;
+$enable-button-milli:                  true                         !default;
+$enable-button-micro:                  true                         !default;
+$enable-button-normalis:               true                         !default;
+
 
 
 
@@ -34,40 +60,37 @@ $use-buttons:                       true                            !default;
  * Button template
  *
  * Build on this component using rulesets in your application-level CSS.
- *
- * 1. Inherit text color from ancestor.
- * 2. Inherit font styles from ancestor.
- * 3. If the button’s text is 1em, and the button is (2 * font-size) tall,
- *    then there is .5em of space above and below that text. We therefore
- *    apply 1em of space to the left and right, as padding, to keep
- *    consistent spacing.
- * 4. Prevent wrapping across multiple lines.
- * 5. Corrects inability to style clickable `input` types in iOS
  */
 .button {
-    position: relative;
     display: inline-block;
-    padding-top: 0;
-    padding-bottom: 0;
-    border: 1px solid;
-    margin: 0;
-    background: transparent;
-    color: inherit; /* 1 */
-    cursor: pointer;
-    font: inherit; /* 2 */
-    line-height: 2; /* 3 */
-    padding-left: 1em; /* 3 */
-    padding-right: 1em; /* 3 */
-    text-align: center;
-    text-decoration: none;
     vertical-align: middle;
-    white-space: nowrap; /* 4 */
-    -webkit-appearance: none; /* 5 */
+    @include rem(padding, ($button-padding - $button-border-width)  ($button-padding*2 - $button-border-width));
+    margin:  0;
+    border: none;
+    overflow: visible;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    background-color: $button-background;
+
+    @if($button-border-width != 0) {
+        border: $button-border-width $button-border-style $button-border-color;
+    }
+
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &:visited {
+        text-decoration: none;
+        color: $button-color;
+    }
 
     &:hover,
-    &:focus,
-    &:active {
-        text-decoration: none;
+    &:active,
+    &:focus {
+        background-color: darken($button-background, 15%);
+        border-color:     darken($button-background, 15%);
     }
 
 
@@ -88,29 +111,31 @@ $use-buttons:                       true                            !default;
 /**
  * Button size modifiers
  */
-.button--small {
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-    line-height: 1.5;
+@if $enable-button-small == true {
+
+    .button--small {
+        @include rem(padding, ($button-padding--small - $button-border-width) (($button-padding--small*2) - $button-border-width));
+    }
+
 }
-.button--large {
-    padding-right: 1.5em;
-    padding-left: 1.5em;
-    line-height: 3;
-}
-.button--huge {
-    padding-right: 2em;
-    padding-left: 2em;
-    line-height: 4;
+@if $enable-button-large == true {
+
+    .button--large {
+        @include rem(padding, ($button-padding--large - $button-border-width) (($button-padding--large*2) - $button-border-width));
+    }
+
 }
 
+@if $enable-button-full == true {
 
-/**
- * full-width modifier
- */
-.button--full {
-    display: block;
-    width: 100%;
+    /**
+     * full-width modifier
+     */
+    .button--full {
+        display: block;
+        width: 100%;
+    }
+
 }
 
 
@@ -121,61 +146,56 @@ $use-buttons:                       true                            !default;
 /**
  * Button font-size modifiers
  */
-.button--alpha {
-    @include font-size($alpha, false);
-}
-.button--beta {
-    @include font-size($beta, false);
-}
-.button--gamma {
-    @include font-size($gamma, false);
-}
-.button--delta {
-    @include font-size($delta, false);
-}
-.button--epsilon {
-    @include font-size($epsilon, false);
-}
-.button--zeta {
-    @include font-size($zeta, false);
-}
-.button--milli {
-    @include font-size($milli, false);
-}
-.button--micro {
-    @include font-size($micro, false);
-}
-
-
-/**
- * Make the button inherit sizing from its parent.
- */
-.button--normalis {
-    vertical-align: baseline;
-    font-size: inherit;
-    line-height: inherit;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-}
-
-
-
-/* Dirty firefox/IE hack, to circumvent line-height bug
-\*----------------------------------------------------------------------------*/
-
-input[type="submit"] {
-    &.button {
-        height: 2em;
+@if $enable-button-alpha == true {
+    .button--alpha {
+        @include font-size($alpha);
     }
-    &.button--small {
-        height: 1.5em;
+}
+@if $enable-button-beta == true {
+    .button--beta {
+        @include font-size($beta);
     }
-    &.button--large {
-        height: 3em;
+}
+@if $enable-button-gamma == true {
+    .button--gamma {
+        @include font-size($gamma);
     }
-    &.button--huge {
-        height: 4em;
+}
+@if $enable-button-delta == true {
+    .button--delta {
+        @include font-size($delta);
+    }
+}
+@if $enable-button-epsilon == true {
+    .button--epsilon {
+        @include font-size($epsilon);
+    }
+}
+@if $enable-button-zeta == true {
+    .button--zeta {
+        @include font-size($zeta);
+    }
+}
+@if $enable-button-milli == true {
+    .button--milli {
+        @include font-size($milli);
+    }
+}
+@if $enable-button-micro == true {
+    .button--micro {
+        @include font-size($micro);
     }
 }
 
+@if $enable-button-normalis == true {
+    /**
+     * Make the button inherit sizing from its parent.
+     */
+    .button--normalis {
+        vertical-align: baseline;
+        font-size: inherit;
+        line-height: inherit;
+        padding: 0 .5em;
+    }
+}
 }
