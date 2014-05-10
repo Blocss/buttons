@@ -9,7 +9,7 @@
 \*----------------------------------------------------------------------------*/
 
 // Module can be disabled by switching `$use-buttons` to `false`
-$use-buttons:                       true                            !default;
+$use-buttons:                          true                         !default;
 
 $button-padding:                       $space/2                     !default;
 $button-padding--small:                $button-padding/2            !default;
@@ -19,6 +19,23 @@ $button-color:                         #000000                      !default;
 $button-border-width:                  1px                          !default;
 $button-border-style:                  solid                        !default;
 $button-border-color:                  $button-color                !default;
+
+/**
+ * Enable/disable modifiers
+ */
+$enable-button-small:                  true                         !default;
+$enable-button-large:                  true                         !default;
+$enable-button-full:                   true                         !default;
+$enable-button-alpha:                  true                         !default;
+$enable-button-beta:                   true                         !default;
+$enable-button-gamma:                  true                         !default;
+$enable-button-delta:                  true                         !default;
+$enable-button-epsilon:                true                         !default;
+$enable-button-zeta:                   true                         !default;
+$enable-button-milli:                  true                         !default;
+$enable-button-micro:                  true                         !default;
+$enable-button-normalis:               true                         !default;
+
 
 
 
@@ -94,20 +111,31 @@ $button-border-color:                  $button-color                !default;
 /**
  * Button size modifiers
  */
-.button--small {
-    @include rem(padding, ($button-padding--small - $button-border-width) (($button-padding--small*2) - $button-border-width));
+@if $enable-button-small == true {
+
+    .button--small {
+        @include rem(padding, ($button-padding--small - $button-border-width) (($button-padding--small*2) - $button-border-width));
+    }
+
 }
-.button--large {
-    @include rem(padding, ($button-padding--large - $button-border-width) (($button-padding--large*2) - $button-border-width));
+@if $enable-button-large == true {
+
+    .button--large {
+        @include rem(padding, ($button-padding--large - $button-border-width) (($button-padding--large*2) - $button-border-width));
+    }
+
 }
 
+@if $enable-button-full == true {
 
-/**
- * full-width modifier
- */
-.button--full {
-    display: block;
-    width: 100%;
+    /**
+     * full-width modifier
+     */
+    .button--full {
+        display: block;
+        width: 100%;
+    }
+
 }
 
 
@@ -118,39 +146,56 @@ $button-border-color:                  $button-color                !default;
 /**
  * Button font-size modifiers
  */
-.button--alpha {
-    @include font-size($alpha);
+@if $enable-button-alpha == true {
+    .button--alpha {
+        @include font-size($alpha);
+    }
 }
-.button--beta {
-    @include font-size($beta);
+@if $enable-button-beta == true {
+    .button--beta {
+        @include font-size($beta);
+    }
 }
-.button--gamma {
-    @include font-size($gamma);
+@if $enable-button-gamma == true {
+    .button--gamma {
+        @include font-size($gamma);
+    }
 }
-.button--delta {
-    @include font-size($delta);
+@if $enable-button-delta == true {
+    .button--delta {
+        @include font-size($delta);
+    }
 }
-.button--epsilon {
-    @include font-size($epsilon);
+@if $enable-button-epsilon == true {
+    .button--epsilon {
+        @include font-size($epsilon);
+    }
 }
-.button--zeta {
-    @include font-size($zeta);
+@if $enable-button-zeta == true {
+    .button--zeta {
+        @include font-size($zeta);
+    }
 }
-.button--milli {
-    @include font-size($milli);
+@if $enable-button-milli == true {
+    .button--milli {
+        @include font-size($milli);
+    }
 }
-.button--micro {
-    @include font-size($micro);
+@if $enable-button-micro == true {
+    .button--micro {
+        @include font-size($micro);
+    }
 }
 
-
-/**
- * Make the button inherit sizing from its parent.
- */
-.button--normalis {
-    vertical-align: baseline;
-    font-size: inherit;
-    line-height: inherit;
-    padding: 0 .5em;
+@if $enable-button-normalis == true {
+    /**
+     * Make the button inherit sizing from its parent.
+     */
+    .button--normalis {
+        vertical-align: baseline;
+        font-size: inherit;
+        line-height: inherit;
+        padding: 0 .5em;
+    }
 }
 }
