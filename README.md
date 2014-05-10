@@ -1,4 +1,4 @@
-# Blocss Buttons – v1.0.0
+# Blocss Buttons – v1.1.0
 
 A [Blocss](https://github.com/Blocss/blocss/) component to create buttons.
 The button classes are best applied to links, buttons, and submit inputs.
@@ -17,7 +17,6 @@ Read more about [Blocss](https://blocss.github.io/blocss).
 * `.button` - The core component class
 * `.button--small` - Modifier class for a small button
 * `.button--large` - Modifier class for a large button
-* `.button--huge` - Modifier class for a huge button
 * `.button--full` - Modifier class for a button tht takes up full width
 * `.button--alpha` - Modifier class for a alpha size button
 * `.button--beta` - Modifier class for a beta size button
@@ -36,6 +35,11 @@ Read more about [Blocss](https://blocss.github.io/blocss).
 <button class="button  [button--MODIFIER]" type="submit">button text</button>
 <input class="button  [button--MODIFIER]" type="submit" value="button text">
 ```
+
+## Deprecated
+All the api calls which are deprecated:
+
+* `.button--huge` is removed from version `v1.1.0` since nobody was ever using it.
 
 ## Browser support
 
