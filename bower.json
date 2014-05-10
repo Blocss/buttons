@@ -1,5 +1,19 @@
 {
     "name": "blocss-buttons",
     "version": "1.0.0",
-    "main": "_buttons.scss"
+    "homepage": "https://github.com/Blocss/buttons",
+    "authors": [
+        "Bram Smulders <bram@bramsmulders.com>"
+    ],
+    "description": "A Blocss component to create simple buttons",
+    "main": "_buttons.scss",
+    "keywords": [
+        "blocss",
+        "oocss",
+        "css"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "blocss": "~5.0"
+    }
 }
